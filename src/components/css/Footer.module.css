@@ -1,0 +1,14 @@
+.artist{
+    text-align: center;
+    color: var(--darkMode);
+    font-weight: 700;
+  
+  }
+  .footer{
+    /* margin-top: 24px; */
+    padding-top: 24px;
+    padding-bottom: 3rem;
+  }
+  .ancher{
+    color: red;
+  }
