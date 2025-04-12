@@ -38,7 +38,7 @@ function Subjects() {
       </ol>
       <div className="my-5 flex items-center">
         <Button text={'Home 🏠'} to={'/'} />
-        <ToggleButton onClick={handleOnClick} text={'Reset 🔄️'} />
+        <ToggleButton onClick={handleOnClick} text={'Reset all 🔄️'} />
       </div>
     </section>
   )
