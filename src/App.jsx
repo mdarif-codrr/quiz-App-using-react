@@ -1,5 +1,5 @@
 
-import './App1.css'
+import './App.css'
 import { Route, Routes } from 'react-router'
 
 // import Math from './pages/Math'

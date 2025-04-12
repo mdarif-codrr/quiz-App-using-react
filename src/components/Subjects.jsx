@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router'
 import Button from './Button'
 import ToggleButton from './ToggleButton'
+import Index from './Index'
+import { QuizContext } from '../context/QuizContext'
 
 function Subjects() {
+ const  {setIndex} = useContext(QuizContext)
+
   const Subjects = [
     'mathematics',
     'biology',
@@ -19,6 +23,8 @@ function Subjects() {
   ]
   const handleOnClick = () => {
     localStorage.clear()
+    setIndex(0)
+
   }
   return (
     <section className=" list subject-list text-center px-2 ">

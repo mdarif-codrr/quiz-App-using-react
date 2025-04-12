@@ -17,7 +17,7 @@ function QuizTime() {
     
     useEffect(() => {
         let savedData = JSON.parse(localStorage.getItem(`${subject}`)) || [];
-
+      
         if(savedData[index]?.selectedOption !== undefined){
           setSelectedOption(savedData[index].selectedOption);
           setIsAnswered(true);
@@ -93,7 +93,7 @@ function QuizTime() {
       };
     
   return (
-    <section className="quiz-time  bg-[#cce2c2] p-4 ">
+    <section className="quiz-time  bg-[#cce2c2] p-4   ">
         <div className="container2 flex items-center justify-between px-3 ">
           <div className="img-container">
             <img className="logo max-w-28" src={QuizLogo} alt="" />
@@ -111,9 +111,9 @@ function QuizTime() {
         <TimerComponent setTime={setTimeLeft} leftTime={timeLeft} />
         <Option options={object.options} answer={object.answer} onClick={handleOnClick} /> 
         <div className="btn-div flex py-5">
+            <ToggleButton onClick={()=>handleBackNextBtn('back')} text={'<<< Back'} />
             <Button text={'Home 🏡'} to={'/subjects'} />
             <ToggleButton onClick={handleBackNextBtn} text={'Next >>>'} />
-            <ToggleButton onClick={()=>handleBackNextBtn('back')} text={'<<< Back'} />
          
         </div>
       </section>

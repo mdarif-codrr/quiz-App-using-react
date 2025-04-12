@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import biology from '../data/biology';
 import chemistry from '../data/chemistry';
@@ -24,11 +24,11 @@ function ContextProvider({ children }) {
   const [selectedOption, setSelectedOption] = useState(null)
   const [isAnswered, setIsAnswered] = useState(false)
   const [index,setIndex] = useState(0)
-      let object
-      const param = useParams()
-      const subject =param.subject
-      // console.log(subject);
-      
+  let object
+  const param = useParams()
+  const subject =param.subject
+  // console.log(subject);
+ 
       const subjectData = {
         biology,
         chemistry,
