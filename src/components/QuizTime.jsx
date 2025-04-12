@@ -98,7 +98,7 @@ function QuizTime() {
           <div className="img-container">
             <img className="logo max-w-28" src={QuizLogo} alt="" />
           </div>
-          <div> <ToggleButton text={'🔄️'} title={'reset this subject'} onClick={handleReset} /> </div>
+          <div> <ToggleButton text={'Reset 🔄️'} title={'reset this subject'} onClick={handleReset} /> </div>
           <div className="music-btn">
             <img className="sound max-w-5" src={Volume} alt="" />
           </div>
