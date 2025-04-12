@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 math.php
 pages
-public
+# public
