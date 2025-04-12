@@ -16,7 +16,7 @@ import { Route, Routes } from 'react-router'
 import Home from './components/Home'
 import Subjects from './components/Subjects'
 import Index from './components/Index'
-import MainPage from './pages/MainPage'
+// import MainPage from './pages/MainPage'
 import JsonPhp from './components/JsonPhp'
 import QuizTime from './components/QuizTime'
 
