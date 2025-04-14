@@ -20,14 +20,14 @@ export const QuizContext = createContext()
 
 function ContextProvider({ children }) {
   // console.log(children);
-  
-  const [selectedOption, setSelectedOption] = useState(null)
-  const [isAnswered, setIsAnswered] = useState(false)
-  const [index,setIndex] = useState(0)
-  let object
   const param = useParams()
   const subject =param.subject
-  // console.log(subject);
+  const localData = JSON.parse(localStorage.getItem(`${subject}`))
+    const newIdx = localData?localData[localData.length-1].id:0
+  const [selectedOption, setSelectedOption] = useState(null)
+  const [isAnswered, setIsAnswered] = useState(false)
+  const [index,setIndex] = useState(localData?localData[localData.length-1].id:0)
+  let object
  
       const subjectData = {
         biology,
@@ -42,10 +42,11 @@ function ContextProvider({ children }) {
         'political science': politicalScience,
         geography,
       };
+      // console.log(subjectData[subject][index]);
+      
+      //  console.log(localData.length!==0);
       if (subject in subjectData) {
-      //  console.log(subject);
-      //  console.log(subjectData);
-       
+        
        
          object = subjectData[subject][index]
       } else if(subject!== undefined)  {

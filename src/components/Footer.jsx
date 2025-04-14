@@ -3,7 +3,7 @@ import styles from './css/Footer.module.css'
 
 export default function Footer() {
   return (
-    <footer className={`${styles.footer} bg-[#cce2c2]` }>
+    <footer className={`${styles.footer} bg-inherit` }>
       <p className={styles.artist}>
         Made With ❤️ by{' '}
         <Link className={styles.ancher} to="https://www.instagram.com/iam_mdarifg?igsh=MXJmejM0YndwM3MwbQ==">

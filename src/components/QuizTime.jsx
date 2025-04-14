@@ -12,11 +12,25 @@ import TimerComponent from './TimerComponent'
 import NamePlate from './NamePlate'
 
 function QuizTime() {
-    const {setSelectedOption,isAnswered, object, setIsAnswered,index,setIndex,subject} = useContext(QuizContext)
+    const {setSelectedOption,isAnswered,object, setIsAnswered,index,setIndex,subject} = useContext(QuizContext)
    const [timeLeft, setTimeLeft] = useState(60);
-    
+  
+
+
+   useEffect(() => {
+    const localData = JSON.parse(localStorage.getItem(`${subject}`));
+   
+    if (localData && localData.length > 0) {
+      const lastId = localData[localData.length - 1].id;
+      setIndex(lastId); 
+    } else {
+      setIndex(0); 
+     }
+  }, [subject]);
+
     useEffect(() => {
         let savedData = JSON.parse(localStorage.getItem(`${subject}`)) || [];
+      // console.log(index);
       
         if(savedData[index]?.selectedOption !== undefined){
           setSelectedOption(savedData[index].selectedOption);
@@ -35,7 +49,6 @@ function QuizTime() {
       question: object.question,
       selectedOption,
       id:index,
-      // isAnswered:!isAnswered
       
     }
     const isDuplicate = data.some(item=> item.id ===newObject.id)
@@ -43,19 +56,16 @@ function QuizTime() {
     data.push(newObject);
   
     localStorage.setItem(`${subject}`, JSON.stringify(data));
-    // console.log('Updated Data:', data);
    }
   };
 
     const handleOnClick = (ele) => {
-      // console.log(ele);
-      
-        // ele = ele
+ 
       if (isAnswered) return; 
     setSelectedOption(ele);
       setIsAnswered(true); 
       addToLocalStorage(ele,isAnswered)
-      // setTimeLeft(60)
+      setTimeLeft(59)
     };
 
     const handleBackNextBtn = (arrg)=>{
@@ -74,10 +84,6 @@ function QuizTime() {
         setIsAnswered(false); 
 
         }
-        // console.log(index);
-        
-        // console.log('ok');
-        
 
       }else{
         return
@@ -91,9 +97,14 @@ function QuizTime() {
           setIndex(0)
 
       };
-    
+    const handleHome =()=>{
+      setIndex( 0)
+      
+    }
+
+
   return (
-    <section className="quiz-time  bg-[#cce2c2] p-4   ">
+    <section className="quiz-time p-4   ">
         <div className="container2 flex items-center justify-between px-3 ">
           <div className="img-container">
             <img className="logo max-w-28" src={QuizLogo} alt="" />
@@ -106,13 +117,13 @@ function QuizTime() {
         < YellowBoard data={`${index+1}/25`}  />
         <NamePlate text={subject.toUpperCase()} />
         <p className="question  w-full p-5 font-semibold text-xl bg-[#f5f5f57a] my-3 rounded-xl ">
-          {object.question}
+          {object.question || 'Loading...'}
         </p>
-        <TimerComponent setTime={setTimeLeft} leftTime={timeLeft} />
+        <TimerComponent setTime={setTimeLeft} timeLeft={timeLeft} />
         <Option options={object.options} answer={object.answer} onClick={handleOnClick} /> 
         <div className="btn-div flex py-5">
             <ToggleButton onClick={()=>handleBackNextBtn('back')} text={'<<< Back'} />
-            <Button text={'Home 🏡'} to={'/subjects'} />
+            <Button text={'Home 🏡'} onClick={handleHome} to={'/subjects'} />
             <ToggleButton onClick={handleBackNextBtn} text={'Next >>>'} />
          
         </div>

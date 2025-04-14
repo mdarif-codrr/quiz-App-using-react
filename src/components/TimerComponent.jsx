@@ -4,8 +4,8 @@ import { useContext } from 'react';
 import { QuizContext } from '../context/QuizContext';
 import { useParams } from 'react-router';
 
-function TimerComponent({setTime,leftTime}) {
-  // const [leftTime, setTime] = useState(60);
+function TimerComponent({setTime,timeLeft}) {
+  // const [timeLeft, setTime] = useState(60);
 
  const { setSelectedOption,index,selectedOption,object,subject, setIsAnswered,setIndex,isAnswered} =useContext(QuizContext)
 
@@ -30,43 +30,69 @@ function TimerComponent({setTime,leftTime}) {
 };
 
     useEffect(() => {
-      if (leftTime <= 0 && index<24){
-        setIsAnswered(true);
-        setSelectedOption(null);
-        setIndex((prevIndex) => prevIndex + 1); // ✅ Correct way to update index
-       
-        setTime(59)
-        addToLocalStorage(selectedOption,isAnswered)
 
-        return; // Timer ko yahan se return karenge
+
+     
+      const body = document.body;
+    
+      body.classList.remove('bg-red-200', 'bg-yellow-200', 'bg-[#cce2c2]');
+      if (timeLeft > 30) {
+        body.classList.add('bg-[#cce2c2]'); // Green
+      } else if (timeLeft > 15 && timeLeft <= 30) {
+        body.classList.add('bg-yellow-200'); // Yellow
+      } else if (timeLeft <= 15) {
+        body.classList.add('bg-red-200'); // Red
       }
+    
+    
       
+
       const timer = setInterval(() => {
         if(index<25){
           setTime((prev) => prev - 1);
         }
       }, 1000);
+
+      
       // console.log(selectedOption);
       
       if(isAnswered){
         // console.log(timer);
         
-        return   clearInterval(timer)
-        //  console.log('leftTime');
-         
+        return    clearInterval(timer)
+        // or whatever default
+        
+        //  console.log('timeLeft');
+        
         
       }
-  
+      
+      if (timeLeft <= 0 && index<24){
+        setIsAnswered(true);
+        setSelectedOption(null);
+        setIndex((prevIndex) => prevIndex + 1); // ✅ Correct way to update index
+       
+        setTime(60)
+        console.log('oh');
+        
+        addToLocalStorage(selectedOption,isAnswered)
+
+        return; // Timer ko yahan se return karenge
+      }
       return () => {
+        body.classList.remove('bg-red-200', 'bg-yellow-200', 'bg-[#cce2c2]');
+        body.classList.add('bg-[#cce2c2]');
         clearInterval(timer)
-      //  console.log('leftTime');
+      //  console.log('timeLeft');
        
       }; // Clean up
-    }, [leftTime]);
-  
+    }, [timeLeft]);
+  useEffect(()=>{
+    setTime(60)
+  },[])
     return (
       <>
-      <YellowBoard data={`00:${leftTime < 10 ? '0' + leftTime : leftTime}s`}/>
+      <YellowBoard data={`00:${timeLeft < 10 ? '0' + timeLeft : timeLeft}s`}/>
       </>
     );
   
