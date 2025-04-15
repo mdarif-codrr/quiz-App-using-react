@@ -77,7 +77,7 @@ function QuizTime() {
 
         
 
-        if(timeLeft===0 || isAnswered){
+        if(timeLeft<=0 || isAnswered){
           setTimeLeft(60)
       setIndex((prevIndex) => prevIndex + 1)
       setSelectedOption(null); 
@@ -98,7 +98,7 @@ function QuizTime() {
 
       };
     const handleHome =()=>{
-      setIndex( 0)
+      setIndex(0)
       
     }
 
