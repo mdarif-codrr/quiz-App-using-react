@@ -1,4 +1,3 @@
-
 import './App.css'
 import { Route, Routes } from 'react-router'
 
@@ -17,18 +16,13 @@ import Home from './components/Home'
 import Subjects from './components/Subjects'
 import Index from './components/Index'
 // import MainPage from './pages/MainPage'
-import JsonPhp from './components/JsonPhp'
+// import JsonPhp from './components/JsonPhp'
 import QuizTime from './components/QuizTime'
 
-
-
-
 function App() {
- 
-
   return (
-   <>
-    {/* <Routes>
+    <>
+      {/* <Routes>
       <Route  path='/' element={<Home/>}>
       <Route index element={<Index/>}/>
       <Route path='/subjects' element={<Subjects/>} />
@@ -46,17 +40,17 @@ function App() {
       <Route path='/main' element={<MainPage />} />
       </Route>
     </Routes> */}
-    <Routes>
-      <Route>
-      <Route  path='/' element={<Home/>}>
-      <Route index element={<Index/>}/>
-      <Route path='/subjects' element={<Subjects/>}/>
-      <Route path='/:subject' element={<QuizTime/>} />
-      <Route path='/php' element={<JsonPhp/>} />
-      </Route>
-      </Route>
-    </Routes>
-   </>
+      <Routes>
+        <Route>
+          <Route path="/" element={<Home />}>
+            <Route index element={<Index />} />
+            <Route path="/subjects" element={<Subjects />} />
+            <Route path="/:subject" element={<QuizTime />} />
+            {/* <Route path='/php' element={<JsonPhp/>} /> */}
+          </Route>
+        </Route>
+      </Routes>
+    </>
   )
 }
 

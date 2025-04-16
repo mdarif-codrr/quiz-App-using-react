@@ -12,7 +12,10 @@ function Button({ text, to, onClick }) {
         text === 'Home 🏡' ? 'hover:bg-pink-600' : 'hover:bg-green-700'
       }`}
     >
-      <Link to={to} className="font-semibold text-xl w-full px-3 max-md:text-sm  text-center pb-5  ">
+      <Link
+        to={to}
+        className="font-semibold text-xl w-full px-3 max-md:text-sm  text-center pb-5  "
+      >
         {text}
       </Link>{' '}
     </button>

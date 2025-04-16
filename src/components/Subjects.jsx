@@ -6,8 +6,7 @@ import Index from './Index'
 import { QuizContext } from '../context/QuizContext'
 
 function Subjects() {
- const  {setIndex,Subject} = useContext(QuizContext)
-
+  const { setIndex, Subject } = useContext(QuizContext)
 
   const Subjects = [
     'mathematics',
@@ -25,9 +24,8 @@ function Subjects() {
   const handleOnClick = () => {
     localStorage.clear()
     setIndex(0)
-
   }
-  
+
   return (
     <section className=" list subject-list text-center px-2 ">
       <p className="my-4 text-3xl font-semibold font-serif">
@@ -40,7 +38,7 @@ function Subjects() {
             key={ele}
           >
             {' '}
-            <Link to={`/${ele}`} > {ele.toLocaleUpperCase()} </Link>{' '}
+            <Link to={`/${ele}`}> {ele.toLocaleUpperCase()} </Link>{' '}
           </li>
         ))}
       </ol>

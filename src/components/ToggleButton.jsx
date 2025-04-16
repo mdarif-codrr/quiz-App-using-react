@@ -6,7 +6,7 @@ function ToggleButton({ text, onClick, title }) {
 
   return (
     <button
-    title={title}
+      title={title}
       onClick={onClick}
       type="button"
       className={`${

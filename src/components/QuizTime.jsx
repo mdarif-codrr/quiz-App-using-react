@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {QuizContext} from '../context/QuizContext'
-import WrongImg from './image/wrong.svg'
-import RightImg from './image/vector2.svg'
 import QuizLogo from './image/group4.svg'
 import Volume from './image/iconVolume.svg'
 import YellowBoard from './YellowBoard'
@@ -12,7 +10,7 @@ import TimerComponent from './TimerComponent'
 import NamePlate from './NamePlate'
 
 function QuizTime() {
-    const {setSelectedOption,isAnswered,object, setIsAnswered,index,setIndex,subject} = useContext(QuizContext)
+    const {setSelectedOption,isAnswered,object,subjectData, setIsAnswered,index,setIndex,subject} = useContext(QuizContext)
    const [timeLeft, setTimeLeft] = useState(60);
   
 
@@ -59,6 +57,7 @@ function QuizTime() {
    }
   };
 
+
     const handleOnClick = (ele) => {
  
       if (isAnswered) return; 
@@ -73,7 +72,7 @@ function QuizTime() {
 
         setIndex((prevIndex) => prevIndex - 1)
 
-      }else if(arrg!=='back' && index<24){
+      }else if(arrg!=='back' && index<subjectData[subject].length-1 ){
 
         
 
@@ -95,6 +94,7 @@ function QuizTime() {
         setSelectedOption(null);
           setIsAnswered(false);
           setIndex(0)
+          setTimeLeft(60)
 
       };
     const handleHome =()=>{
@@ -114,7 +114,7 @@ function QuizTime() {
             <img className="sound max-w-5" src={Volume} alt="" />
           </div>
         </div>
-        < YellowBoard data={`${index+1}/25`}  />
+        < YellowBoard data={`${index+1}/${subjectData[subject].length}`}  />
         <NamePlate text={subject.toUpperCase()} />
         <p className="question  w-full p-5 font-semibold text-xl bg-[#f5f5f57a] my-3 rounded-xl ">
           {object.question || 'Loading...'}
